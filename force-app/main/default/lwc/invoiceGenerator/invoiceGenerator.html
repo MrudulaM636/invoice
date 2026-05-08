@@ -1,0 +1,90 @@
+<template>
+    <lightning-card title="Invoice Generator">
+
+
+        <template if:true={isStep1}>
+            <div class="invoice-container slds-p-around_medium">
+
+                <lightning-input 
+                    label="Opportunity Id"
+                    value={opportunityId}
+                    onchange={handleChange}>
+                </lightning-input>
+
+                <br/>
+
+                <lightning-button 
+                    label="Next"
+                    onclick={handleClick}>
+                </lightning-button>
+
+            </div>
+        </template>
+
+        <template if:true={isStep2}>
+            <div class="invoice-container slds-p-around_medium">
+
+                <h3>Line Items</h3>
+
+
+                <template for:each={lineItems} for:item="item">
+                    <div key={item.id} class="slds-m-bottom_small">
+
+                        <lightning-input 
+                            label="Product Name"
+                            data-id={item.id}
+                            data-field="product"
+                            onchange={handleItemChange}>
+                        </lightning-input>
+
+                        <lightning-input 
+                            label="Quantity"
+                            type="number"
+                            data-id={item.id}
+                            data-field="quantity"
+                            onchange={handleItemChange}>
+                        </lightning-input>
+
+                        <lightning-input 
+                            label="Price"
+                            type="number"
+                             step="0.01"
+                            data-id={item.id}
+                            data-field="price"
+                           onchange={handleItemChange}>
+                        </lightning-input>
+                    </div>
+                </template>
+
+                <br/>
+
+                <lightning-button 
+                    label="Add Row"
+                    onclick={addRow}>
+                </lightning-button>
+
+                <br/><br/>
+
+            <p><b>Total Amount: {totalAmount}</b></p>
+                <lightning-button 
+                    label="Back"
+                    onclick={goBack}>
+                </lightning-button>
+
+                <lightning-button 
+                        label="Save Invoice"
+                        variant="brand"
+                        onclick={saveInvoice}>
+                </lightning-button>
+                <br><br>
+                <lightning-button
+                       label="Download PDF"
+                    onclick={downloadPdf}
+                      variant="brand">
+                </lightning-button>
+
+            </div>
+        </template>
+
+    </lightning-card>
+</template>
