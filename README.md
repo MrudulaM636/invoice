@@ -1,18 +1,84 @@
-# Salesforce DX Project: Next Steps
+Invoice Generator LWC
+Overview
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Invoice Generator is a Lightning Web Component (LWC) application developed in Salesforce to create Invoice records along with multiple Invoice Line Items dynamically from the UI.
 
-## How Do You Plan to Deploy Your Changes?
+The application allows users to:
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Enter an Opportunity Id
+Add multiple product line items
+Calculate total invoice amount dynamically
+Save Invoice and Invoice Line Items
+Redirect to the created Invoice record page after successful creation
+Features
+Multi-step invoice creation flow
+Dynamic Add Row functionality
+Real-time total amount calculation
+Salesforce Apex integration
+Toast messages for success and error handling
+Navigation to created Invoice record
+Dynamic line item handling
+Technologies Used
+Salesforce Lightning Web Components (LWC)
+Apex
+JavaScript
+HTML
+Salesforce Custom Objects
+Custom Objects Used
+Invoice__c
 
-## Configure Your Salesforce DX Project
+Stores Invoice details.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+Fields:
 
-## Read All About It
+Name
+Opportunity__c
+TotalAmount__c
+Invoice_Line_Item__c
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+Stores Invoice line items.
+
+Fields:
+
+ProductName__c
+Quantity__c
+Price__c
+Invoice__c (Lookup to Invoice__c)
+Apex Controller
+InvoiceController.cls
+
+Responsible for:
+
+Creating Invoice record
+Creating related Invoice Line Item records
+Returning created Invoice Id
+LWC Components
+invoiceGenerator
+HTML
+Opportunity input
+Dynamic line item form
+Add Row button
+Save Invoice button
+JavaScript
+
+Handles:
+
+Dynamic row addition
+Input handling
+Total calculation
+Apex method call
+Navigation after save
+Functional Flow
+User enters Opportunity Id
+User clicks Next
+User adds line items
+Total amount is calculated automatically
+User clicks Save Invoice
+Invoice and related line items are created
+User is redirected to created Invoice record page
+Deployment Steps
+Deploy Apex Class
+Deploy LWC Component
+Add component to Lightning App/Page
+Assign object permissions
+Test functionality
